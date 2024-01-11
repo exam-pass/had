@@ -1,0 +1,39 @@
+import 'package:flutter/material.dart';
+import 'package:assets_audio_player/assets_audio_player.dart';
+void main() {
+ runApp(MaterialApp(
+ home: Scaffold(
+ appBar: AppBar(title: Text('XYLOPHONE'), centerTitle: true),
+ body: XyloPage(),
+ ),
+ ));
+}
+class XyloPage extends StatelessWidget {
+ void playSound(int noteNumber) => AssetsAudioPlayer.newPlayer().open(
+ Audio('audios/note$noteNumber.wav'),
+ autoStart: true,
+ showNotification: true,
+ );
+ Widget buildButton(Color color, int noteNumber, String label) => Expanded(
+ child: TextButton(
+ style: TextButton.styleFrom(backgroundColor: color),
+ onPressed: () => playSound(noteNumber),
+ child: Text(label),
+ ),
+ );
+ @override
+ Widget build(BuildContext context) => Column(
+ crossAxisAlignment: CrossAxisAlignment.stretch,
+ children: [
+ buildButton(Colors.amberAccent, 1, 'first'),
+ buildButton(Colors.brown, 2, 'second'),
+ buildButton(Colors.yellow, 3, 'third'),
+ buildButton(Colors.green, 4, 'four'),
+ ],
+ );
+}
+```
+In app/gradle
+DefautConfig{
+multiDexEnabled true
+````
